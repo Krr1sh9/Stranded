@@ -16,6 +16,16 @@ MonoBehaviour:
   itemType: 0
   attackType: 0
   actionType: 0
+  equipmentType: 0
+  defenseBonus: 0
+  attackBonus: 0
+  strengthBonus: 0
+  healthBonus: 0
+  staminaBonus: 0
+  weaponPrefab: {fileID: 0}
   stackable: 1
   ID: f26e1396-cd73-4dcf-a00d-75757c34a0f8
-  image: {fileID: 21300000, guid: df49e60286e084549bba8d9bebf38b42, type: 3}
+  image: {fileID: 21300000, guid: 87048fb31c8d8574d971f295c57beed3, type: 3}
+  itemModel: {fileID: 0}
+  itemName: 
+  price: 0

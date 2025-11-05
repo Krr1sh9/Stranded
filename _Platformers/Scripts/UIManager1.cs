@@ -19,7 +19,7 @@ namespace Platformers
         {
             if (gameOverScreen == null)
             {
-                Debug.LogError("UIManager: gameOverScreen GameObject is not assigned in the Inspector!", this);
+      
                 enabled = false; // Disable script if critical UI is missing
                 return;
             }
@@ -31,7 +31,7 @@ namespace Platformers
                 playerController = GameObject.Find("FPSController").GetComponent<FirstPersonController>();
                 if (playerController == null)
                 {
-                    Debug.LogWarning("UIManager: FirstPersonController not found in the scene. Player controls may not be disabled on game over.", this);
+                    ;
                 }
             }
         }
@@ -68,7 +68,7 @@ namespace Platformers
             }
             else
             {
-                Debug.LogError("UIManager: Attempted to show GameOverScreen, but the GameObject is null.", this);
+                ;
             }
 
             // Disable player controls when game over screen appears
@@ -77,13 +77,13 @@ namespace Platformers
                 playerController.SetControlsEnabled(false);
             }
 
-            Debug.Log("UIManager: Game Over Screen should be displayed now.");
+         
             // Implement your game over UI logic here
         }
 
         public void RestartGame()
         {
-            Debug.Log("UIManager: Restarting game...");
+        
 
             // Before loading the scene, ensure player controls are re-enabled (if disabled)
             // Or just let the new scene handle the initial state.

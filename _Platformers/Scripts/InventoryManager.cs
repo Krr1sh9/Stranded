@@ -41,8 +41,6 @@ namespace Platformers
             hotbar5Action = Hotbar.FindActionMap("UI").FindAction("Hotbar4");
 
 
-
-            Debug.Log("Hotbar Action: " + hotbar1Action);
             mainCamera = Camera.main;
 
         }
@@ -123,8 +121,7 @@ namespace Platformers
 
             inventorySlots[newValue].Select();
             selectedSlot = newValue;
-            Debug.Log("Hotbar slot " + (newValue + 1) + " selected.");
-
+           
             // --- 2. Destroy the Old Weapon ---
             // Instead of destroying a component, we destroy the entire GameObject.
             if (currentWeaponObject != null)
@@ -145,7 +142,7 @@ namespace Platformers
             }
             else
             {
-                Debug.LogWarning("WeaponSwitching reference is not set on the InventoryManager!");
+                ;
             }
         }
         public void BuyItem(Item item)
@@ -154,12 +151,12 @@ namespace Platformers
             {
                 playerGold -= item.price;
                 AddItems(item);
-                Debug.Log("Bought " + item.itemName + ". Remaining gold: " + playerGold);
+                
                 // Here you would update the UI
             }
             else
             {
-                Debug.Log("Not enough gold to buy " + item.itemName);
+                ;
             }
         }
         public bool AddItems(Item item)
@@ -195,7 +192,7 @@ namespace Platformers
         {
             GameObject newItem = Instantiate(inventoryPrefab, slot.transform);
             InventoryItem items = newItem.GetComponent<InventoryItem>();
-            Debug.Log(items);
+            
             items.InitialiseItem(item);
         }
         public Item GetSelectedItem(bool use)

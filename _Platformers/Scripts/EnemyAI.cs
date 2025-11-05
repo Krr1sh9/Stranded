@@ -34,11 +34,14 @@ namespace Platformers
         public float sightRange, attackRange;
         public bool playerInSightRange, playerInAttackRange;
 
+        private XPTracker xpTracker; // Add a field to hold a reference to the XPTracker instance
+
         private void Awake()
         {
             player = GameObject.Find("FPSController").transform;
             agent = GetComponent<NavMeshAgent>();
             healthbar = GetComponentInChildren<FloatingHealthbar>();
+            xpTracker = Object.FindFirstObjectByType<XPTracker>(); // Use the recommended method
         }
 
         public void Start()
@@ -121,7 +124,13 @@ namespace Platformers
             health -= damage;
             healthbar.UpdateHealthbar(health, maxHealth);
 
-            if (health <= 0) Invoke(nameof(DestroyEnemy), 0.5f);
+            if (health <= 0) {
+                Invoke(nameof(DestroyEnemy), 0.5f);
+                if (xpTracker != null)
+                {
+                    xpTracker.AddXP(100); // Use the instance to call AddXP
+                }
+            }
         }
         private void DestroyEnemy()
         {

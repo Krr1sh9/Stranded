@@ -22,9 +22,10 @@ MonoBehaviour:
   strengthBonus: 3
   healthBonus: 23
   staminaBonus: 2
+  weaponPrefab: {fileID: 0}
   stackable: 1
   ID: 1d915e71-cc3e-408e-8bb4-d03ce4bc808f
-  image: {fileID: 21300000, guid: d5cab6940ee892c458dfef5bfaaf7074, type: 3}
+  image: {fileID: 21300000, guid: 52e27ce5c81810d4ea4022b9c67c331a, type: 3}
   itemModel: {fileID: 0}
   itemName: Helmets
   price: 0

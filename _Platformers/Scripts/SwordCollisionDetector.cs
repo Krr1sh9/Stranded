@@ -37,8 +37,7 @@ namespace Platformers
             // We check for mining first. If the pickaxe hits a rock, it shouldn't also try to damage it as an enemy.
             if (other.CompareTag("Mineable"))
             {
-                Debug.Log("SwordCollisionDetector initialized.");
-                Debug.Log("Mining tool hit a mineable resource: " + other.name);
+              
 
                 // Get the MineableResource component from the object we hit.
                 if (other.TryGetComponent<MineableResource>(out var resource))
@@ -51,7 +50,7 @@ namespace Platformers
             // --- 2. CHECK FOR ENEMY ATTACK ---
             else if (other.CompareTag("Enemy") && weaponController.isAttacking)
             {
-                Debug.Log("Sword hit an enemy: " + other.name);
+            
 
                 // CORRECTED LOGIC: Get the health component FROM THE ENEMY.
                 if (other.TryGetComponent<EnemyAI>(out var enemy))

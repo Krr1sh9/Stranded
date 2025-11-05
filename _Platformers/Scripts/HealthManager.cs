@@ -45,12 +45,12 @@ namespace Platformers
             if (context.action == Heals)
             {
                 Debug.Log("Heal action performed (from Inspector config)");
-                Heal(10);
+
             }
             else if (context.action == TakeDamages)
             {
                 Debug.Log("Take Damage action performed (from Inspector config)");
-                TakeDamage(10);
+
             }
         }
 

@@ -55,6 +55,7 @@ namespace Platformers
         public float attackDistance = 2f;
         public float attackRate = 1f;
         public float attackDelay = 1f;
+        public WeaponController weaponController;
 
         public LayerMask npcLayer;
 
@@ -97,10 +98,10 @@ namespace Platformers
             characterController = GetComponent<CharacterController>();
             healthManager = GameObject.Find("HealthManager").GetComponent<HealthManager>();
 
-            if (characterController == null)
-            {
-                Debug.LogError("The FirstPersonController script on the object '" + gameObject.name + "' is missing a CharacterController component.", this.gameObject);
-            }
+            //if (characterController == null)
+            //{
+            //    Debug.LogError("The FirstPersonController script on the object '" + gameObject.name + "' is missing a CharacterController component.", this.gameObject);
+            //}
             mainCamera = Camera.main; // Make sure your main camera has the "MainCamera" tag
 
             // Initial cursor state for gameplay
@@ -418,22 +419,37 @@ namespace Platformers
 
         private void OnCollisionEnter(Collision collision)
         {
+            // We only care about objects tagged "Projectile".
             if (collision.gameObject.CompareTag("Projectile"))
             {
-                Debug.Log("fwfefw3243243");
-                // Try to get the Projectile component from the object we hit
-                Projectile projectile = collision.gameObject.GetComponent<Projectile>();
-
-
-                if (projectile != null)
+                // --- THIS IS THE NEW LOGIC ---
+                // Check the flag from your WeaponController.
+                if (weaponController != null && weaponController.isDefending)
                 {
-                    // Apply damage from the projectile's damage value
-                    healthManager.TakeDamage(projectile.damage);
+                    // --- DEFENDING LOGIC ---
+                    Debug.Log("BLOCKED! Projectile was deflected.");
+
+                
+                }
+                else
+                {
+                    // --- NOT DEFENDING LOGIC (Take Damage) ---
+                    Debug.Log("HIT! Player took damage from a projectile.");
+
+                    // Try to get the Projectile component from the object we hit.
+                    if (collision.gameObject.TryGetComponent<Projectile>(out var projectile))
+                    {
+                        // Apply damage from the projectile's damage value.
+                        if (healthManager != null)
+                        {
+                            healthManager.TakeDamage(projectile.damage);
+                        }
+                    }
                 }
 
-                // Destroy the projectile after it hits the player
+                // --- COMMON LOGIC ---
+                // In BOTH cases (hit or block), we want to destroy the projectile.
                 Destroy(collision.gameObject);
-
             }
         }
 
@@ -531,23 +547,23 @@ namespace Platformers
             //        Destroy(hit.gameObject);
             //    }
             //}
-            if (hit.gameObject.CompareTag("Projectile"))
-            {
+            //if (hit.gameObject.CompareTag("Projectile"))
+            //{
 
-                Debug.Log("fwfefw");
-                // Try to get the Projectile component from the object we hit
-                Projectile projectile = hit.gameObject.GetComponent<Projectile>();
+            //    Debug.Log("fwfefw");
+            //    // Try to get the Projectile component from the object we hit
+            //    Projectile projectile = hit.gameObject.GetComponent<Projectile>();
 
 
-                if (projectile != null)
-                {
-                    // Apply damage from the projectile's damage value
-                    healthManager.TakeDamage(projectile.damage);
-                }
+            //    if (projectile != null)
+            //    {
+            //        // Apply damage from the projectile's damage value
+            //        healthManager.TakeDamage(projectile.damage);
+            //    }
 
-                // Destroy the projectile after it hits the player
-                Destroy(hit.gameObject);
-            }
+            //    // Destroy the projectile after it hits the player
+            //    Destroy(hit.gameObject, 2.0f);
+            //}
         }
         
 
@@ -608,7 +624,7 @@ namespace Platformers
                 Cursor.lockState = CursorLockMode.Locked;
                 Cursor.visible = false;
 
-                Debug.Log("Controls ENABLED. Player can move and look.");
+                
             }
             else
             {
@@ -626,7 +642,6 @@ namespace Platformers
                 lookInput = Vector2.zero;
                 
 
-                Debug.Log("Controls DISABLED. Player is frozen for menu interaction.");
             }
         }
     }

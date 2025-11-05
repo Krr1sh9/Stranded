@@ -155,6 +155,7 @@ namespace Platformers
             UnityEngine.Cursor.lockState = CursorLockMode.None;
             UnityEngine.Cursor.visible = true;
             isShopOpen = true;
+            ShowCoinsText();
             Debug.Log("Shop opened. Player controls disabled, cursor unlocked.");
         }
 
@@ -171,7 +172,8 @@ namespace Platformers
             UnityEngine.Cursor.visible = false;
             isShopOpen = false;
             closeButton.gameObject.SetActive(false);
-            
+            HideCoinsText();
+
             Debug.Log("Shop closed. Player controls enabled, cursor locked.");
         }
 
