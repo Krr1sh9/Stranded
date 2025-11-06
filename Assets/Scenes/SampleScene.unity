@@ -1718,23 +1718,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 1925573813}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 93ee54040b9bd664f9afe23dc9993554, type: 3}
+  m_Script: {fileID: 11500000, guid: 89596596165a663488bb54aa5da3d692, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerCamera: {fileID: 963194227}
-  walkSpeed: 6
-  runSpeed: 12
-  jumpPower: 7
-  gravity: 10
-  lookSpeed: 2
-  lookXLimit: 45
-  defaultHeight: 2
-  crouchHeight: 1
-  crouchSpeed: 3
-  moveDirection: {x: 0, y: 0, z: 0}
-  rotationX: 0
-  characterController: {fileID: 0}
-  canMove: 1
+  walkSpeed: 5
+  sprintMultiplier: 1.8
+  jumpHeight: 5
+  maxAirSpeed: 7.5
+  airControlMultiplier: 5
+  mouseSensitivity: 2
+  lookLimit: 85
+  bobAmplitude: 0.1
+  bobFrequency: 10
+  crouchSpeedMultiplier: 0.5
+  crouchHeight: 2.5
 --- !u!1001 &1928478918
 PrefabInstance:
   m_ObjectHideFlags: 0
